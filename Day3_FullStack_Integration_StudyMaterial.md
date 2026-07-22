@@ -268,21 +268,15 @@ export class NoticesController {
 Browsers only send GET from the address bar, so testing POST/PATCH/DELETE needs a proper client. In **Postman** (from the prerequisites) — or `curl`:
 
 ```bash
-# CREATE — a new notice appears
-curl -X POST http://localhost:3001/notices \
-  -H "Content-Type: application/json" \
-  -d '{"title": "FDP Day 3 in progress", "tag": "Events"}'
+curl -X POST http://localhost:3001/notices -H "Content-Type: application/json" -d "{\"title\":\"FDP Day 3 in progress\",\"tag\":\"Events\"}"
 
-# READ — the list now has 4 items
 curl http://localhost:3001/notices
 
-# UPDATE — change notice 1's title
-curl -X PATCH http://localhost:3001/notices/1 \
-  -H "Content-Type: application/json" \
-  -d '{"title": "Exam schedule POSTPONED"}'
+curl -X PATCH http://localhost:3001/notices/1 -H "Content-Type: application/json" -d "{\"title\":\"Exam schedule POSTPONED\"}"
 
-# DELETE — remove notice 3
 curl -X DELETE http://localhost:3001/notices/3
+
+curl http://localhost:3001/notices
 ```
 
 Refresh **localhost:3000/notices** after each command — the *website* reflects every change, because it reads from the same living API. The two halves are demonstrably one system now. 🎉
